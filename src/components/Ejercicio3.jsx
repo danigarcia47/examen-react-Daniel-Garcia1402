@@ -1,8 +1,18 @@
 import React from 'react';
+import { Card, Container, Table, Row, Col } from 'react-bootstrap';
+import { TitulosTelefono } from '../data/DatosTelefono';
 
 class Ejercicio3 extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  eliminar(){
+    localStorage.removeItem('brand');
+    localStorage.removeItem('phone_name');
+    localStorage.removeItem('os');
+    localStorage.removeItem('dimension');
+    localStorage.removeItem('storage');
   }
 
   render() {
@@ -19,7 +29,59 @@ class Ejercicio3 extends React.Component {
         </li>
       </ul>
 
-      
+      <Container>
+          <Row>
+            <Col lg={10} md={10}>
+                <Table responsive striped>
+                  <thead>
+                    <tr>
+                      <th>{TitulosTelefono.field1}</th>
+                      <th>{TitulosTelefono.field2}</th>
+                      <th>{TitulosTelefono.field3}</th>
+                      <th>{TitulosTelefono.field4}</th>
+                      <th>{TitulosTelefono.field5}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {DatosTelefono.map((item) => {
+                      return (
+                        <tr>
+                          <td>{item.brand}</td>
+                          <td>{item.phone_name}</td>
+                          <td>{item.os}</td>
+                          <td>{item.dimension}</td>
+                          <td>{item.storage}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </Table>
+            </Col>
+
+            <Col lg={4} md={6}>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={this.state.selectedItem.phone_images} />
+                <Card.Body>
+                  <Card.Title>
+                    {this.state.selectedItem.title}
+                  </Card.Title>
+                  <Card.Text>
+                    Marca: {this.state.selectedItem.brand}
+                    <p/>
+                    Modelo: {this.state.selectedItem.phone_name}
+                    <p/>
+                    Sistema Operativo: {this.state.selectedItem.os}
+                    <p/>
+                    Dimension: {this.state.selectedItem.dimension}
+                    <p/>
+                    Almacenamiento: {this.state.selectedItem.storage}
+                  </Card.Text>
+                </Card.Body>
+                <Button variant="primary" type="button" onClick={this.eliminar}>Eliminar como favorito</Button>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
     </div>
     );
   }

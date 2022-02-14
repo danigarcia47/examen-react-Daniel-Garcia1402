@@ -1,4 +1,7 @@
 import React from 'react';
+import uuid from 'react-uuid';
+import { Card, Container, Table, Row, Col } from 'react-bootstrap';
+
 
 class Ejercicio2 extends React.Component {
   constructor(props) {
