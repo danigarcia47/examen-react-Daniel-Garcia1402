@@ -3,6 +3,17 @@ import React from 'react';
 class Ejercicio2 extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { selectedItem: '', tableData: [] };
+  }
+
+  changeSelected = (item) => {
+    this.setState({ selectedItem: item});
+  };
+
+  async componentDidMount(){
+    const response = await fetch('https://api-mobilespecs.azharimm.site/v2/brands');
+    const responseData = await response.json();
+    this.setState({ tableData: responseData, selectedItem: responseData[0] });
   }
 
   render() {
@@ -39,6 +50,8 @@ class Ejercicio2 extends React.Component {
           Añade un botón al Card que permita añadir un teléfono a una lista de favoritos, de modo que almacene su información en localStorage al ir a otra página<b> - 1 punto</b>
         </li>
       </ul>
+
+
     </div>
      
     );
